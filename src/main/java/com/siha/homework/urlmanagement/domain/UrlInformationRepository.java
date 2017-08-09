@@ -13,23 +13,8 @@ import java.util.function.Predicate;
  * @since 2017.08.08
  */
 @Repository
-public class UrlInformationRepository {
-    private static Set<UrlInformation> urlInformationList = new LinkedHashSet<>();
-
-    public Optional<UrlInformation> findById(String key) {
-        return find(u -> key.equals(u.getKey()));
-    }
-
-    public Optional<UrlInformation> findByOriginUrl(String originUrl) {
-        return find(u -> originUrl.equals(u.getOriginUrl()));
-    }
-
-    private Optional<UrlInformation> find(Predicate<UrlInformation> test) {
-        return urlInformationList.stream().filter(u -> test.test(u)).map(Optional::of).findFirst().orElse(Optional.empty());
-    }
-
-    public UrlInformation save(UrlInformation u) {
-        urlInformationList.add(u);
-        return u;
-    }
+public interface UrlInformationRepository {
+    Optional<UrlInformation> findById(String key);
+    Optional<UrlInformation> findByOriginUrl(String originUrl);
+    public UrlInformation save(UrlInformation u);
 }

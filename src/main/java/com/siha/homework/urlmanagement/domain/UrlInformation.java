@@ -9,6 +9,4 @@ import lombok.Data;
 public class UrlInformation {
     private String key;
     private String originUrl;
-
-
 }
